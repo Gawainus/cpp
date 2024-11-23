@@ -1,12 +1,8 @@
-
-#include <algorithm>
-#include <memory>
-#include <vector>
-#include <random>
+#include "vector.h"
 
 #include <benchmark/benchmark.h>
 
-using std::vector;
+using std::string;
 
 
 static void BM_random_vector(benchmark::State& state) {
@@ -18,12 +14,15 @@ static void BM_random_vector(benchmark::State& state) {
             std::numeric_limits<size_t>::min(),
             std::numeric_limits<size_t>::max());
 
-    std::vector<size_t> vec(1024*1024*1024, 0);
+    // std::vector<size_t> vec(1024*1024*1024, 0);
     // std::fill(vec.begin(), vec.end(), dist_size_t(rng));
 
     for (auto _ : state) {
-        // This code gets timed
-        sum<size_t>(vec);
+        vector<string> vec;
+        for (size_t i = 0; i < 1024*1024; ++i) {
+            vec.push_back(std::to_string(dist_size_t(rng)));
+        }
+
     }
 }
 

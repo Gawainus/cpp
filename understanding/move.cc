@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <chrono>
 
 using namespace std;
 
@@ -20,10 +21,10 @@ public:
         : name_(std::move(name)) {
         cout << "Simple MOVE ctor called" << endl;
     }
-    
+
     Person(const Person& rhs) {
         cout << "COPY ctor called" << endl;
-        
+
     }
 
     Person(Person&& rhs) {
@@ -57,7 +58,8 @@ public:
         c_.push_back(person);
 
         auto ts2 = chrono::high_resolution_clock::now();
-        cout << (ts2 - ts).count() << ": " << c_.size() << endl;
+        cout << chrono::duration_cast<chrono::nanoseconds>(ts2 - ts).count()
+            << " nanos: " << c_.size() << endl;
     }
 
     template<typename T>
@@ -66,7 +68,8 @@ public:
         c_.emplace_back(std::move(person));
 
         auto ts2 = chrono::high_resolution_clock::now();
-        cout << (ts2 - ts).count() << ": " << c_.size() << endl;
+        cout << chrono::duration_cast<chrono::nanoseconds>(ts2 - ts).count()
+            << " nanos: " << c_.size() << endl;
     }
 
 private:
@@ -90,9 +93,9 @@ int main() {
 
     Person mikha{alex_name};
     s.push_log(mikha);
-    
+
     Person dmitri{alex_name};
     s.push_log(dmitri);
-    
+
 
 }
