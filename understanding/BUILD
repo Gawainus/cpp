@@ -53,3 +53,14 @@ cc_binary(
         "-std=c++20"
     ],
 )
+
+cc_binary(
+    name = "thread",
+    srcs = ["thread.cc"],
+    deps = [
+        "@benchmark//:benchmark_main",
+    ],
+    copts = [
+        "-std=c++20"
+    ],
+)
