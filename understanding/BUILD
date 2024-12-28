@@ -1,4 +1,26 @@
 # https://docs.bazel.build/versions/master/be/c-cpp.html#cc_binary
+
+cc_binary(
+    name = "incre_int",
+    srcs = ["incre_int.cc"],
+    copts = [
+    ],
+    deps = [
+        "@spdlog"
+    ],
+)
+
+
+cc_binary(
+    name = "chrono",
+    srcs = ["chrono.cc"],
+    copts = [
+    ],
+    deps = [
+    ],
+)
+
+
 cc_binary(
     name = "move",
     srcs = ["move.cc"],
@@ -26,7 +48,6 @@ cc_library(
     deps = [
     ],
     copts = [
-        "-std=c++20"
     ],
 )
 
@@ -40,6 +61,28 @@ cc_binary(
     ],
     copts = [
         "-std=c++20"
+    ],
+)
+
+cc_binary(
+    name = "bm_maps",
+    srcs = ["bm_maps.cc"],
+    deps = [
+        "@benchmark//:benchmark_main",
+    ],
+    copts = [
+        "-std=c++23"
+    ],
+)
+
+cc_binary(
+    name = "bm_span",
+    srcs = ["bm_span.cc"],
+    deps = [
+        "@benchmark//:benchmark_main",
+    ],
+    copts = [
+        "-std=c++23"
     ],
 )
 
